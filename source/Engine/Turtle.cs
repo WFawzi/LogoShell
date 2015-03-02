@@ -21,13 +21,19 @@ namespace Engine
 
         public Turtle(double x, double y)
         {
-            this.X = x;
-            this.Y = y;
+            X = x;
+            Y = y;
         }
 
         public void MoveForward(double step)
         {
-            Y += step;
+            X += step * Math.Sin(ConvertToRadians(Direction));
+            Y += step * Math.Cos(ConvertToRadians(Direction));
+        }
+
+        private double ConvertToRadians(double angle)
+        {
+            return (Math.PI / 180) * angle;
         }
 
         public void Turn(double angle)
@@ -40,17 +46,6 @@ namespace Engine
             {
                 Direction += 360d;
             }
-        }
-
-
-        public void MoveRight(double step)
-        {
-            X += step;
-        }
-
-        public void MoveLeft(double step)
-        {
-            X -= step;
         }
     }
 }

@@ -92,7 +92,7 @@ namespace Engine.Tests
         }
 
         [TestMethod]
-        public void Turtle_MovesForward()
+        public void MoveForward_OnInitialTurtle_MovesUp()
         {
             //Arrange
             var step = 3.0d;
@@ -107,42 +107,35 @@ namespace Engine.Tests
         }
 
         [TestMethod]
-        public void Turtle_MovedRight()
+        public void MoveForward_MultipleTimes_AccumulatesTotalDistance()
         {
             //Arrange
-            var xPos = 3.0d;
-            var yPos = 3.0d;
-
             var step = 3.0d;
+            Turtle turtle = new Turtle();
 
             //Act
-            var turtle = new Turtle(xPos, yPos);
-            turtle.MoveRight(step);
+            turtle.MoveForward(step);
+            turtle.MoveForward(step);
 
             //Assert
-            Assert.AreEqual((xPos+step), turtle.X, Double.Epsilon);
-            Assert.AreEqual(yPos, turtle.Y, Double.Epsilon);
+            Assert.AreEqual(0.0d, turtle.X, Double.Epsilon);
+            Assert.AreEqual(2*step, turtle.Y, Double.Epsilon);
         }
 
         [TestMethod]
-        public void Turtle_MovedLeft()
+        public void TurnAndMove_MovesAtAnAngle()
         {
             //Arrange
-            var xPos = 3.0d;
-            var yPos = 3.0d;
-
-            var step = 3.0d;
+            var turtle = new Turtle();
 
             //Act
-            var turtle = new Turtle(xPos, yPos);
-            turtle.MoveLeft(step);
+            turtle.Turn(53.130102354155978703144387440907d);
+            turtle.MoveForward(5.0d);
 
             //Assert
-            Assert.AreEqual((xPos - step), turtle.X, Double.Epsilon);
-            Assert.AreEqual(yPos, turtle.Y, Double.Epsilon);
+            Assert.AreEqual(4.0d, turtle.X, 0.000000001d);
+            Assert.AreEqual(3.0d, turtle.Y, 0.000000001d);
         }
-
-
     }
 }
 
