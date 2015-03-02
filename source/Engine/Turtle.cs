@@ -8,10 +8,15 @@ namespace Engine
 {
     public class Turtle
     {
+        public double X { get; private set; }
+        public double Y { get; private set; }
+        public double Direction { get; private set; }
+
         public Turtle()
         {
             this.X = 0;
             this.Y = 0;
+            this.Direction = 0;
         }
 
         public Turtle(double x, double y)
@@ -20,28 +25,32 @@ namespace Engine
             this.Y = y;
         }
 
-        public double X { get; private set; }
-        public double Y { get; private set; }
+        public void MoveForward(double step)
+        {
+            Y += step;
+        }
+
+        public void Turn(double angle)
+        {
+            Direction += angle;
+
+            Direction = Direction % 360d;
+
+            if (Direction < 0)
+            {
+                Direction += 360d;
+            }
+        }
 
 
-        public void moveRight(double step)
+        public void MoveRight(double step)
         {
             X += step;
         }
 
-        public void moveLeft(double step)
+        public void MoveLeft(double step)
         {
             X -= step;
-        }
-
-        public void moveUp(double step)
-        {
-            Y -= step;
-        }
-
-        public void moveDown(double step)
-        {
-            Y += step;
         }
     }
 }

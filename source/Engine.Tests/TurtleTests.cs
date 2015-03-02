@@ -39,6 +39,74 @@ namespace Engine.Tests
         }
 
         [TestMethod]
+        public void Turtle_WhenCreated_PointsUp()
+        {
+            var turtle = new Turtle();
+
+            Assert.AreEqual(0.0d, turtle.Direction, Double.Epsilon);
+        }
+
+        [TestMethod]
+        public void Turn_UpdatesDirection()
+        {
+            var turtle = new Turtle();
+            var angleToRotate = 90.0d;
+
+            turtle.Turn(angleToRotate);
+
+            Assert.AreEqual(angleToRotate, turtle.Direction, Double.Epsilon);
+        }
+
+
+        [TestMethod]
+        public void Turn_MultipleTimes_AccumulatesTotalAngle()
+        {
+            var turtle = new Turtle();
+            var angleToRotate = 90.0d;
+
+            turtle.Turn(angleToRotate);
+            turtle.Turn(angleToRotate);
+
+            Assert.AreEqual(2*angleToRotate, turtle.Direction, Double.Epsilon);
+        }
+
+
+        [TestMethod]
+        public void Turn_OnNegativeAngle_DirectionRemainsPositive()
+        {
+            var turtle = new Turtle();
+
+            turtle.Turn(-450.5d);
+
+            Assert.AreEqual(269.5d, turtle.Direction, Double.Epsilon);
+        }
+
+        [TestMethod]
+        public void Turn_OnAngleGreaterThan360_DirectionRemainsLessThan360()
+        {
+            var turtle = new Turtle();
+
+            turtle.Turn(1080.5d); //360 * 3
+
+            Assert.AreEqual(0.5d, turtle.Direction, Double.Epsilon);
+        }
+
+        [TestMethod]
+        public void Turtle_MovesForward()
+        {
+            //Arrange
+            var step = 3.0d;
+            Turtle turtle = new Turtle();
+
+            //Act
+            turtle.MoveForward(step);
+
+            //Assert
+            Assert.AreEqual(0.0d, turtle.X, Double.Epsilon);
+            Assert.AreEqual(step, turtle.Y, Double.Epsilon);
+        }
+
+        [TestMethod]
         public void Turtle_MovedRight()
         {
             //Arrange
@@ -49,7 +117,7 @@ namespace Engine.Tests
 
             //Act
             var turtle = new Turtle(xPos, yPos);
-            turtle.moveRight(step);
+            turtle.MoveRight(step);
 
             //Assert
             Assert.AreEqual((xPos+step), turtle.X, Double.Epsilon);
@@ -67,12 +135,14 @@ namespace Engine.Tests
 
             //Act
             var turtle = new Turtle(xPos, yPos);
-            turtle.moveLeft(step);
+            turtle.MoveLeft(step);
 
             //Assert
             Assert.AreEqual((xPos - step), turtle.X, Double.Epsilon);
             Assert.AreEqual(yPos, turtle.Y, Double.Epsilon);
         }
+
+
     }
 }
 
