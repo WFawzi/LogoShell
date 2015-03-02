@@ -1,0 +1,10 @@
+﻿<Window x:Class="Logo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="700" Width="525" ResizeMode="CanResizeWithGrip">
+    <DockPanel LastChildFill="true">
+        <TextBox DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="300" Margin="10,10,10,10" TextWrapping="Wrap" Text="TextBlock" AcceptsReturn="True" AcceptsTab="True" Background="white" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        <Canvas DockPanel.Dock="Top" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,10,10" Background="red"/>
+
+    </DockPanel>
+</Window>
