@@ -23,6 +23,13 @@ namespace Logo
         public MainWindow()
         {
             InitializeComponent();
+
+            var line = new Polyline();
+            line.Points.Add(new Point(0,0));
+            line.Points.Add(new Point(800,800));
+            line.StrokeThickness = 3;
+            line.Stroke = Brushes.Green;
+            LogoCanvas.Children.Add(line);
         }
     }
 }
