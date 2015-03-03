@@ -3,7 +3,6 @@
 * change line colour
 * set different start position
 * speak command
-* clear button/function instead of resetting canvas every run
 * animate the drawing
 * draggable canvas
 * zoomable canvas
@@ -11,3 +10,7 @@
 * syntax highlighting in script box
 * import/export script file
 * render turtle image at current turtle position
+
+
+Done:
+* clear button/function instead of resetting canvas every run

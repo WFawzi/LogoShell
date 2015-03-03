@@ -62,7 +62,7 @@ $input.MoveForward(100);
             path.StrokeThickness = 2;
             path.Stroke = Brushes.Black;
 
-            LogoCanvas.Children.Clear(); //remove all previous drawings
+            //LogoCanvas.Children.Clear(); //remove all previous drawings
             LogoCanvas.Children.Add(path); //add new drawing
         }
 
@@ -89,6 +89,11 @@ $input.MoveForward(100);
                 }
             }
             return turtle;
+        }
+
+        private void ExecuteClearCanvas(object sender, RoutedEventArgs e)
+        {
+            LogoCanvas.Children.Clear(); //remove all previous drawings
         }
     }
 }

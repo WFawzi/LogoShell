@@ -5,6 +5,7 @@
         <DockPanel LastChildFill="true" Grid.Row="0">
             <TextBox Name="UserScriptBox" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="300" Margin="10,0,10,10" TextWrapping="NoWrap" Text="TextBlockasdf" AcceptsReturn="True" AcceptsTab="True" Background="white" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
         <Button VerticalAlignment="Bottom" Margin="5,5,5,10" Padding="15,5,15,5" IsDefault="True" HorizontalAlignment="Left" Background="#FF56DE41" FontFamily="Segoe UI Semibold" FontSize="16" Click="ExecuteDrawing" Content="Draw!"/>
-        <Canvas  Name="LogoCanvas" DockPanel.Dock="Top" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,10,10" ClipToBounds="True"/>
+        <Button VerticalAlignment="Bottom" Margin="5,5,5,10" Padding="15,5,15,5" IsDefault="True" HorizontalAlignment="Left" Background="#FF56DE41" FontFamily="Segoe UI Semibold" FontSize="16" Click="ExecuteClearCanvas" Content="Clear"/>
+        <Canvas  Name="LogoCanvas" DockPanel.Dock="Top" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,10,10" ClipToBounds="True" Background="Azure"/>
         </DockPanel>
 </Window>
