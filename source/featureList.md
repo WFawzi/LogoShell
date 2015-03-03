@@ -14,3 +14,4 @@
 
 Done:
 * clear button/function instead of resetting canvas every run
+* maintain turtle position between runs

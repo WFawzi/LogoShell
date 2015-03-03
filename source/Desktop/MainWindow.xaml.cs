@@ -24,6 +24,13 @@ namespace Logo
     /// </summary>
     public partial class MainWindow : Window
     {
+        //
+        double x = 0.0d;
+        double y = 0.0d;
+        double direction = 0.0d;
+        //
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -56,19 +63,23 @@ $input.MoveForward(100);
                 var canvasX = (width / 2) + point.X;
                 var canvasY = (height / 2) - point.Y;
 
-                //path.Points.Add(new Point(point.X, point.Y));
                 path.Points.Add(new Point(canvasX, canvasY));
             }
             path.StrokeThickness = 2;
             path.Stroke = Brushes.Black;
 
-            //LogoCanvas.Children.Clear(); //remove all previous drawings
             LogoCanvas.Children.Add(path); //add new drawing
+
+            //
+            x = turtle.Position.X;
+            y = turtle.Position.Y;
+            direction = turtle.Direction;
+            //
         }
 
         private Turtle RunPowerShellScript(string script)
         {
-            var turtle = new Turtle();
+            var turtle = new Turtle(x,y,direction);
 
             var iss = InitialSessionState.Create();
             iss.LanguageMode = PSLanguageMode.FullLanguage;
@@ -94,6 +105,10 @@ $input.MoveForward(100);
         private void ExecuteClearCanvas(object sender, RoutedEventArgs e)
         {
             LogoCanvas.Children.Clear(); //remove all previous drawings
+
+            x = 0;
+            y = 0;
+            direction = 0;
         }
     }
 }

@@ -42,15 +42,17 @@ namespace Engine
 
 
         //Constructores START HERE 
-        public Turtle() : this(0.0d, 0.0d) //calls the other constructor and passes 0.0d as X and Y
+        public Turtle() : this(0.0d, 0.0d, 0.0d) //calls the other constructor and passes 0.0d as X and Y
         {
         }
 
-        public Turtle(double x, double y)
+        public Turtle(double x, double y, double direction)
         {
             Position = new Coordinate(x, y);
 
-            Direction = 0.0d;
+            //Direction = 0.0d;
+            Direction = direction;
+
             _path = new Queue<Coordinate>();
 
             AddCurrentPositionToPath();            

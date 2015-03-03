@@ -29,9 +29,10 @@ namespace Engine.Tests
             //Arrange
             var xPos = 3.0d;
             var yPos = 3.0d;
+            var direction = 0.0d;
             
             //Act
-            var turtle = new Turtle(xPos, yPos);
+            var turtle = new Turtle(xPos, yPos, direction);
 
             //Assert
             Assert.AreEqual(xPos, turtle.Position.X, Double.Epsilon);

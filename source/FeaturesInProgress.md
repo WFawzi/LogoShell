@@ -7,6 +7,10 @@ Done * clear button/function instead of resetting canvas every run
 
 	2) Reset the turtle position to (0,0)
 		Already implemented by "var turtle = new Turtle();" in "private Turtle RunPowerShellScript(string script)"
+
+
+
+Done * maintain turtle position between runs
 --------------------------------------------------------------------
 
 * change line colour
