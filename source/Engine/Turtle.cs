@@ -6,29 +6,60 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Turtle
+    public class Coordinate
     {
         public double X { get; private set; }
         public double Y { get; private set; }
-        public double Direction { get; private set; }
 
-        public Turtle()
-        {
-            this.X = 0;
-            this.Y = 0;
-            this.Direction = 0;
-        }
-
-        public Turtle(double x, double y)
+        public Coordinate(double x, double y)
         {
             X = x;
             Y = y;
         }
+    }
+
+    public class Turtle
+    {
+        public Coordinate Position{ get; private set; }
+
+        public double Direction { get; private set; }
+
+        private Queue<Coordinate> _path;
+        public IEnumerable<Coordinate> Path
+        {
+            get
+            {
+                return _path;
+            }
+        } 
+
+        public Turtle() : this(0.0d, 0.0d)
+        {
+        }
+
+        public Turtle(double x, double y)
+        {
+            Position = new Coordinate(x, y);
+
+            Direction = 0.0d;
+            _path = new Queue<Coordinate>();
+
+            AddCurrentPositionToPath();            
+        }
 
         public void MoveForward(double step)
         {
-            X += step * Math.Sin(ConvertToRadians(Direction));
-            Y += step * Math.Cos(ConvertToRadians(Direction));
+            var tmpX = Position.X + step * Math.Sin(ConvertToRadians(Direction));
+            var tmpY = Position.Y + step * Math.Cos(ConvertToRadians(Direction));
+
+            Position = new Coordinate(tmpX, tmpY);
+
+            AddCurrentPositionToPath();
+        }
+
+        private void AddCurrentPositionToPath()
+        {
+            _path.Enqueue(Position);
         }
 
         private double ConvertToRadians(double angle)

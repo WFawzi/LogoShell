@@ -19,8 +19,8 @@ namespace Engine.Tests
             var turtle = new Turtle();
 
             //Assert
-            Assert.AreEqual(0.0, turtle.X, Double.Epsilon);
-            Assert.AreEqual(0.0, turtle.Y, Double.Epsilon);
+            Assert.AreEqual(0.0, turtle.Position.X, Double.Epsilon);
+            Assert.AreEqual(0.0, turtle.Position.Y, Double.Epsilon);
         }
 
         [TestMethod]
@@ -34,8 +34,8 @@ namespace Engine.Tests
             var turtle = new Turtle(xPos, yPos);
 
             //Assert
-            Assert.AreEqual(xPos, turtle.X, Double.Epsilon);
-            Assert.AreEqual(yPos, turtle.Y, Double.Epsilon);
+            Assert.AreEqual(xPos, turtle.Position.X, Double.Epsilon);
+            Assert.AreEqual(yPos, turtle.Position.Y, Double.Epsilon);
         }
 
         [TestMethod]
@@ -102,8 +102,8 @@ namespace Engine.Tests
             turtle.MoveForward(step);
 
             //Assert
-            Assert.AreEqual(0.0d, turtle.X, Double.Epsilon);
-            Assert.AreEqual(step, turtle.Y, Double.Epsilon);
+            Assert.AreEqual(0.0d, turtle.Position.X, Double.Epsilon);
+            Assert.AreEqual(step, turtle.Position.Y, Double.Epsilon);
         }
 
         [TestMethod]
@@ -118,8 +118,8 @@ namespace Engine.Tests
             turtle.MoveForward(step);
 
             //Assert
-            Assert.AreEqual(0.0d, turtle.X, Double.Epsilon);
-            Assert.AreEqual(2*step, turtle.Y, Double.Epsilon);
+            Assert.AreEqual(0.0d, turtle.Position.X, Double.Epsilon);
+            Assert.AreEqual(2 * step, turtle.Position.Y, Double.Epsilon);
         }
 
         [TestMethod]
@@ -133,8 +133,37 @@ namespace Engine.Tests
             turtle.MoveForward(5.0d);
 
             //Assert
-            Assert.AreEqual(4.0d, turtle.X, 0.000000001d);
-            Assert.AreEqual(3.0d, turtle.Y, 0.000000001d);
+            Assert.AreEqual(4.0d, turtle.Position.X, 0.000000001d);
+            Assert.AreEqual(3.0d, turtle.Position.Y, 0.000000001d);
+        }
+
+
+        [TestMethod]
+        public void NewTurtle_HasntMoved_PathContainsInitialPosition()
+        {
+            //Arrange
+            Turtle turtle = new Turtle();
+
+            //Act
+            
+            //Assert
+            Assert.AreEqual(1, turtle.Path.Count());
+            Assert.AreEqual(turtle.Position.X, turtle.Path.First().X, Double.Epsilon);
+            Assert.AreEqual(turtle.Position.Y, turtle.Path.First().Y, Double.Epsilon);
+        }
+
+        [TestMethod]
+        public void MoveForward_AddsNewPositionToPath()
+        {
+            //Arrange
+            Turtle turtle = new Turtle();
+
+            //Act
+            turtle.MoveForward(100.0);
+
+            //Assert
+            Assert.AreEqual(turtle.Position.X, turtle.Path.ToList().Last().X, Double.Epsilon);
+            Assert.AreEqual(turtle.Position.Y, turtle.Path.ToList().Last().Y, Double.Epsilon);
         }
     }
 }
