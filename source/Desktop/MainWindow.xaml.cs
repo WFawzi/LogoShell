@@ -48,6 +48,7 @@ $input.MoveForward(100);
 
             var path = new Polyline();
 
+            
             foreach (var point in turtle.Path)
             {
                 //translate Turtle coordinate system to Canvas coordinates
