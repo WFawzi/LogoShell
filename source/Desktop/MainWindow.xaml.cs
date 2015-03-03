@@ -44,12 +44,32 @@ $input.MoveForward(100);
             var width = LogoCanvas.ActualWidth;
             var height = LogoCanvas.ActualHeight;
 
+            var turtle = RunPowerShellScript(UserScriptBox.Text);
 
-            var turtle = new Turtle(width / 2, height / 2);
-            var turtleVariable = new SessionStateVariableEntry("$turtle", turtle, "A tasty base for soup.");
+            var path = new Polyline();
+
+            foreach (var point in turtle.Path)
+            {
+                //translate Turtle coordinate system to Canvas coordinates
+                //Turtle(0,0) == Canvas(width/2, height/2)
+                var canvasX = (width / 2) + point.X;
+                var canvasY = (height / 2) - point.Y;
+
+                //path.Points.Add(new Point(point.X, point.Y));
+                path.Points.Add(new Point(canvasX, canvasY));
+            }
+            path.StrokeThickness = 2;
+            path.Stroke = Brushes.Black;
+
+            LogoCanvas.Children.Clear(); //remove all previous drawings
+            LogoCanvas.Children.Add(path); //add new drawing
+        }
+
+        private Turtle RunPowerShellScript(string script)
+        {
+            var turtle = new Turtle();
 
             var iss = InitialSessionState.Create();
-            iss.Variables.Add(turtleVariable);
             iss.LanguageMode = PSLanguageMode.FullLanguage;
 
             using (var myRunSpace = RunspaceFactory.CreateRunspace(iss))
@@ -59,7 +79,7 @@ $input.MoveForward(100);
                 {
                     powershell.Runspace = myRunSpace;
 
-                    foreach(var line in UserScriptBox.Text.Split('\n'))
+                    foreach (var line in script.Split('\n'))
                     {
                         powershell.AddStatement().AddScript(line, true);
                     }
@@ -67,16 +87,7 @@ $input.MoveForward(100);
                     powershell.Invoke(new[] { turtle });
                 }
             }
-
-            var path = new Polyline();
-
-            foreach (var point in turtle.Path)
-            {
-                path.Points.Add(new Point(point.X, point.Y));
-            }
-            path.StrokeThickness = 2;
-            path.Stroke = Brushes.Black;
-            LogoCanvas.Children.Add(path);
+            return turtle;
         }
     }
 }
