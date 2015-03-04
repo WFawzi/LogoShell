@@ -28,6 +28,8 @@ namespace Logo
         double x = 0.0d;
         double y = 0.0d;
         double direction = 0.0d;
+
+        string colour = "Black";
         //
 
 
@@ -54,7 +56,6 @@ $input.MoveForward(100);
             var turtle = RunPowerShellScript(UserScriptBox.Text);
 
             var path = new Polyline();
-
             
             foreach (var point in turtle.Path)
             {
@@ -66,7 +67,32 @@ $input.MoveForward(100);
                 path.Points.Add(new Point(canvasX, canvasY));
             }
             path.StrokeThickness = 2;
-            path.Stroke = Brushes.Black;
+
+
+            //
+            switch (colour)
+            {
+                case "Black":
+                    {
+                        path.Stroke = Brushes.Black;
+                        break;
+                    }
+                case "Blue":
+                    {
+                        path.Stroke = Brushes.Blue;
+                        break;
+                    }
+                case "Green":
+                    {
+                        path.Stroke = Brushes.Green;
+                        break;
+                    }
+                    path.Stroke = Brushes.Black;
+            }
+
+            //path.Stroke = Brushes.Black;
+
+            //
 
             LogoCanvas.Children.Add(path); //add new drawing
 
@@ -109,6 +135,29 @@ $input.MoveForward(100);
             x = 0;
             y = 0;
             direction = 0;
+        }
+
+        private void ExecuteChangeBrushColour(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            colour = comboBox.SelectedItem as string;
+        }
+
+        private void LoadComboBox(object sender, RoutedEventArgs e)
+        {
+            List<string> data = new List<string>();
+            data.Add("Black");
+            data.Add("Blue");
+            data.Add("Green");
+
+            // ... Get the ComboBox reference.
+            var comboBox = sender as ComboBox;
+
+            // ... Assign the ItemsSource to the List.
+            comboBox.ItemsSource = data;
+
+            // ... Make the first item selected.
+            comboBox.SelectedIndex = 0;
         }
     }
 }

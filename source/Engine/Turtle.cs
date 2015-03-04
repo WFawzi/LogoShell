@@ -23,7 +23,7 @@ namespace Engine
     {
         //Properties START HERE
         public Coordinate Position{ get; private set; } //current X and Y of the turtle
-        public double Direction { get; private set; }
+        public double Direction { get; private set; } // rotation angle
 
         private Queue<Coordinate> _path; //_path is a queue of the Coordinate of the turtle, each Coordinate is the X and Y of the turtle   
 
