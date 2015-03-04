@@ -2,20 +2,36 @@
     ViewBag.Title = "Index";
 }
 
-
+<style>
+    #logoCanvas,  #codeEditor{
+        width: 100%;
+        min-width: 500px;
+        max-height: 700px;
+    }
+    canvas {
+        border:1px solid #000000;
+    }
+    #controls {
+        margin: 10px 0 10px 0;
+    }
+</style>
 
 <h2>Turtle!</h2>
 
-<canvas id="myCanvas" width="1000" height="500" style="border:1px solid #000000;"></canvas>
-<button style="position:absolute; TOP:620px; left: 10px;"  id="buttonDraw" type="button">Draw!</button>
-<button style="position:absolute; TOP:620px; left: 80px;" id="buttonClear" type="button">Clear</button> <!--style shoud not be here, but in CSS-->
-<select style="position:absolute; TOP:620px; left: 170px;" id ="selectColour">
-  <option value="black">Black</option>
-  <option value="blue">Blue</option>
-  <option value="green">Green</option>
-</select>
-
-<textarea style="position:absolute; TOP:660px; left: 10px;" id ="textCode" rows="20" cols="140">
+<div>
+    <canvas id="logoCanvas"></canvas>
+</div>
+<div id="controls">
+    <input id="buttonDraw" type="button" value="Draw!"/>
+    <input id="buttonClear" type="button" value="Clear" /> <!--style shoud not be here, but in CSS-->
+    <select id ="selectColour">
+        <option value="black">Black</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+    </select>
+</div>
+<div>
+<textarea id ="codeEditor" rows="20">
 #You can access the cursor using $input.
 #Move the cursor forward by pixels with $input.MoveForward(pixelCount)
 #Turn the cursor by degress with $input.Turn(degrees)
@@ -24,3 +40,5 @@ $input.MoveForward(100);
 $input.Turn(90);
 $input.MoveForward(100); 
 </textarea>
+</div>
+
