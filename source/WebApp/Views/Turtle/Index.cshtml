@@ -14,6 +14,9 @@
     #controls {
         margin: 10px 0 10px 0;
     }
+    #selectColour {
+        width:auto;
+    }
 </style>
 
 <h2>Turtle!</h2>
@@ -21,14 +24,16 @@
 <div>
     <canvas id="logoCanvas"></canvas>
 </div>
-<div id="controls">
-    <input id="buttonDraw" type="button" value="Draw!"/>
-    <input id="buttonClear" type="button" value="Clear" /> <!--style shoud not be here, but in CSS-->
-    <select id ="selectColour">
-        <option value="black">Black</option>
-        <option value="blue">Blue</option>
-        <option value="green">Green</option>
-    </select>
+<div id="controls" class="inline-form">
+    <input id="buttonDraw" type="button" class="btn btn-success" value="Draw!"/>
+    <input id="buttonClear" type="button" class="btn btn-danger" value="Clear" /> <!--style shoud not be here, but in CSS-->
+    <div class="form-group">
+        <select id ="selectColour" class="form-control">
+            <option value="black">Black</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+        </select>
+    </div>
 </div>
 <div>
 <textarea id ="codeEditor" rows="20">
