@@ -40,6 +40,23 @@ namespace Engine.Tests
         }
 
         [TestMethod]
+        public void Turtle_WhenCreatedWithNewDirection_StartsAtDefinedDirection()
+        {
+            //Arrange
+            var xPos = 3.0d;
+            var yPos = 3.0d;
+            var direction = 77.0d;
+
+            //Act
+            var turtle = new Turtle(xPos, yPos, direction);
+
+            //Assert
+            Assert.AreEqual(direction, turtle.Direction, Double.Epsilon);
+        }
+
+
+
+        [TestMethod]
         public void Turtle_WhenCreated_PointsUp()
         {
             var turtle = new Turtle();

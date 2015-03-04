@@ -29,9 +29,7 @@ namespace Logo
         double y = 0.0d;
         double direction = 0.0d;
 
-        string colour = "Black";
-        //
-
+        SolidColorBrush colour = Brushes.Black;
 
         public MainWindow()
         {
@@ -56,7 +54,7 @@ $input.MoveForward(100);
             var turtle = RunPowerShellScript(UserScriptBox.Text);
 
             var path = new Polyline();
-            
+
             foreach (var point in turtle.Path)
             {
                 //translate Turtle coordinate system to Canvas coordinates
@@ -68,44 +66,18 @@ $input.MoveForward(100);
             }
             path.StrokeThickness = 2;
 
-
-            //
-            switch (colour)
-            {
-                case "Black":
-                    {
-                        path.Stroke = Brushes.Black;
-                        break;
-                    }
-                case "Blue":
-                    {
-                        path.Stroke = Brushes.Blue;
-                        break;
-                    }
-                case "Green":
-                    {
-                        path.Stroke = Brushes.Green;
-                        break;
-                    }
-                    path.Stroke = Brushes.Black;
-            }
-
-            //path.Stroke = Brushes.Black;
-
-            //
+            path.Stroke = colour;
 
             LogoCanvas.Children.Add(path); //add new drawing
 
-            //
             x = turtle.Position.X;
             y = turtle.Position.Y;
             direction = turtle.Direction;
-            //
         }
 
         private Turtle RunPowerShellScript(string script)
         {
-            var turtle = new Turtle(x,y,direction);
+            var turtle = new Turtle(x, y, direction);
 
             var iss = InitialSessionState.Create();
             iss.LanguageMode = PSLanguageMode.FullLanguage;
@@ -140,7 +112,30 @@ $input.MoveForward(100);
         private void ExecuteChangeBrushColour(object sender, SelectionChangedEventArgs e)
         {
             var comboBox = sender as ComboBox;
-            colour = comboBox.SelectedItem as string;
+
+            switch (comboBox.SelectedItem as string)
+            {
+                case "Black":
+                    {
+                        colour = Brushes.Black;
+                        break;
+                    }
+                case "Blue":
+                    {
+                        colour = Brushes.Blue;
+                        break;
+                    }
+                case "Green":
+                    {
+                        colour = Brushes.Green;
+                        break;
+                    }
+                default:
+                    {
+                        colour = Brushes.Black;
+                        break;
+                    }
+            }
         }
 
         private void LoadComboBox(object sender, RoutedEventArgs e)
@@ -150,13 +145,8 @@ $input.MoveForward(100);
             data.Add("Blue");
             data.Add("Green");
 
-            // ... Get the ComboBox reference.
             var comboBox = sender as ComboBox;
-
-            // ... Assign the ItemsSource to the List.
             comboBox.ItemsSource = data;
-
-            // ... Make the first item selected.
             comboBox.SelectedIndex = 0;
         }
     }
