@@ -2,6 +2,8 @@
     ViewBag.Title = "Index";
 }
 
+
+
 <style>
     #logoCanvas,  #codeEditor{
         width: 100%;
@@ -47,3 +49,6 @@ $input.MoveForward(100);
 </textarea>
 </div>
 
+@section scripts {
+        @Scripts.Render("~/bundles/turtleengine")
+}
