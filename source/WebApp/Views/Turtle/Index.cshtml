@@ -5,7 +5,7 @@
 
 
 <style>
-    #logoCanvas,  #codeEditor{
+    /*#logoCanvas,*/  #codeEditor{
         width: 100%;
         min-width: 500px;
         max-height: 700px;
@@ -27,8 +27,8 @@
     <canvas id="logoCanvas"></canvas>
 </div>
 <div id="controls" class="inline-form">
-    <input id="buttonDraw" type="button" class="btn btn-success" value="Draw!"/>
-    <input id="buttonClear" type="button" class="btn btn-danger" value="Clear" /> <!--style shoud not be here, but in CSS-->
+    <input id="buttonDraw" type="button" class="btn btn-success" value="Draw!" onclick ="SendScript()"/>
+    <input id="buttonClear" type="button" class="btn btn-danger" value="Clear" />
     <div class="form-group">
         <select id ="selectColour" class="form-control">
             <option value="black">Black</option>

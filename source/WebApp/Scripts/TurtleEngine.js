@@ -6,15 +6,36 @@
     ctx.moveTo(0, 0);
     ctx.lineTo(50, 150);
     ctx.stroke();
-
-
-
-    //Why the below does not work?
-    /*$("logoCanvas").drawArc({
-        draggable: true,
-        fillStyle: "green",
-        x: 100, y: 100,
-        radius: 50
-    });
-    */
 });
+
+
+function SendScript() {
+    
+    //var formData = { name: "ravi", age: "31" }; //Json
+
+
+    var userScript = document.getElementById("codeEditor").textContent;
+    var formData = {
+        userScript: userScript,
+        direction: 0,
+        x: 0,
+        y: 0
+    }; //always use ";" in JS
+ 
+
+
+    $.ajax({
+        url: "/Turtle/Draw",
+        type: "POST",
+        data : formData,
+        success: function(data, textStatus, jqXHR)
+        {
+            //data - response from server
+            debugger;
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+ 
+        }
+    });
+}
