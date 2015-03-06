@@ -18,24 +18,23 @@ function SendScript() {
         y: turtleState.y
     }; //always use ";" in JS
 
-
-
     $.ajax({
         url: "/Turtle/Draw",            //Remember from RouteConfig.cs, url: "{controller}/{action}
         type: "POST",                   //We are POSTing (writing to server) to the controller at the URL "/Turtle/Draw"
         data: formData,
         success: function (data, textStatus, jqXHR) {
             //data - response from server
-            Draw(data.x, data.y, data.direction, data.path);
+            Draw(data.path);
+            SaveTurtleState(data.x, data.y, data.direction);
         },
         error: function (jqXHR, textStatus, errorThrown) {
 
         }
     });
-}
+};
 
 
-function Draw(x, y, direction, path) {
+function Draw(path) {
     var c = document.getElementById("logoCanvas");
     //var c = $('#logoCanvas'); //<-- Not working with the below properties since the DOM and JQuery have different properties, "getContext" foe example is not part of the JQuery properties
 
@@ -45,12 +44,11 @@ function Draw(x, y, direction, path) {
     var ctx = c.getContext("2d");
     ctx.lineWidth = 2;
 
-
     //moveTo, is where you start your drawing - the initial position of the pencil
     //lineTo: is teh actual drawing
-    ctx.moveTo(((canvWidth / 2) + path[0].x), ((canvHeight / 2) -path[0].y));
+    ctx.moveTo(((canvWidth / 2) + path[0].x), ((canvHeight / 2) - path[0].y));
 
-    for(var i = 1; i < path.length; i++){
+    for (var i = 1; i < path.length; i++) {
         var point = path[i];
         var canvasX = (canvWidth / 2) + point.x;
         var canvasY = (canvHeight / 2) - point.y;
@@ -59,10 +57,12 @@ function Draw(x, y, direction, path) {
     };
 
     ctx.stroke();
+};
 
+function SaveTurtleState(x, y, direction) {
 
     turtleState.x = x;
     turtleState.y = y;
     turtleState.direction = direction;
 
-}
+};
