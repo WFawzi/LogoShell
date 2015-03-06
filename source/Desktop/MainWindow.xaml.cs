@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Management.Automation;
-using System.Management.Automation.Runspaces;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,9 +23,9 @@ namespace Logo
     public partial class MainWindow : Window
     {
         //
-        double x = 0.0d;
-        double y = 0.0d;
-        double direction = 0.0d;
+        double _x = 0.0d;
+        double _y = 0.0d;
+        double _direction = 0.0d;
 
         SolidColorBrush colour = Brushes.Black;
 
@@ -51,7 +49,7 @@ $input.MoveForward(100);
             var width = LogoCanvas.ActualWidth;
             var height = LogoCanvas.ActualHeight;
 
-            var turtle = RunPowerShellScript(UserScriptBox.Text);
+            var turtle = PowerShellEnvironment.ExecuteTurtleScript(_x, _y, _direction, UserScriptBox.Text);
 
             var path = new Polyline();
 
@@ -70,43 +68,18 @@ $input.MoveForward(100);
 
             LogoCanvas.Children.Add(path); //add new drawing
 
-            x = turtle.Position.X;
-            y = turtle.Position.Y;
-            direction = turtle.Direction;
-        }
-
-        private Turtle RunPowerShellScript(string script)
-        {
-            var turtle = new Turtle(x, y, direction);
-
-            var iss = InitialSessionState.Create();
-            iss.LanguageMode = PSLanguageMode.FullLanguage;
-
-            using (var myRunSpace = RunspaceFactory.CreateRunspace(iss))
-            {
-                myRunSpace.Open();
-                using (var powershell = PowerShell.Create())
-                {
-                    powershell.Runspace = myRunSpace;
-
-                    foreach (var line in script.Split('\n'))
-                    {
-                        powershell.AddStatement().AddScript(line, true);
-                    }
-
-                    powershell.Invoke(new[] { turtle });
-                }
-            }
-            return turtle;
+            _x = turtle.Position.X;
+            _y = turtle.Position.Y;
+            _direction = turtle.Direction;
         }
 
         private void ExecuteClearCanvas(object sender, RoutedEventArgs e)
         {
             LogoCanvas.Children.Clear(); //remove all previous drawings
 
-            x = 0;
-            y = 0;
-            direction = 0;
+            _x = 0;
+            _y = 0;
+            _direction = 0;
         }
 
         private void ExecuteChangeBrushColour(object sender, SelectionChangedEventArgs e)
