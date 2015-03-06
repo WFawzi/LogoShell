@@ -1,8 +1,26 @@
 ﻿var turtleState = {
     x: 0,
     y: 0,
-    direction: 0
+    direction: 0,
+    path: []
 };
+
+
+$(document).ready(function () {
+
+    var resizeCanvas = function () {
+        var c = document.getElementById("logoCanvas");
+        //var ctx = c.getContext("2d");
+
+        c.width = $('#canvasWrapper').width();
+        c.height = window.innerHeight * 0.6;
+
+        Draw(turtleState.path);
+    }
+
+    $(window).resize(resizeCanvas);
+    resizeCanvas();
+});
 
 function SendScript() {
 
@@ -24,6 +42,7 @@ function SendScript() {
         data: formData,
         success: function (data, textStatus, jqXHR) {
             //data - response from server
+            turtleState.path = turtleState.path.concat(data.path);
             Draw(data.path);
             SaveTurtleState(data.x, data.y, data.direction);
         },
@@ -35,6 +54,11 @@ function SendScript() {
 
 
 function Draw(path) {
+
+    if (!path || path.length === 0) {
+        return;
+    }
+
     var c = document.getElementById("logoCanvas");
     //var c = $('#logoCanvas'); //<-- Not working with the below properties since the DOM and JQuery have different properties, "getContext" foe example is not part of the JQuery properties
 
