@@ -2,7 +2,13 @@
     x: 0,
     y: 0,
     direction: 0,
-    path: []
+    path: [],
+    reset: function () {
+        path = [];
+        x = 0;
+        y = 0;
+        direction = 0;
+    }
 };
 
 
@@ -10,7 +16,7 @@ $(document).ready(function () {
 
     var resizeCanvas = function () {
         var c = document.getElementById("logoCanvas");
-        //var ctx = c.getContext("2d");
+        var ctx = c.getContext("2d");
 
         c.width = $('#canvasWrapper').width();
         c.height = window.innerHeight * 0.6;
@@ -42,8 +48,8 @@ function SendScript() {
         data: formData,
         success: function (data, textStatus, jqXHR) {
             //data - response from server
-            turtleState.path = turtleState.path.concat(data.path);
             Draw(data.path);
+            turtleState.path = turtleState.path.concat(data.path);
             SaveTurtleState(data.x, data.y, data.direction);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -90,3 +96,17 @@ function SaveTurtleState(x, y, direction) {
     turtleState.direction = direction;
 
 };
+
+
+function ClearCanvas()
+{
+    var canvas = document.getElementById("logoCanvas");
+    var ctx = canvas.getContext("2d");
+
+    //This is a hack. clearrect() following by stroke() seems to redraw all the lines we drew in the past.
+    //setting and restoring width seems to destructively (yay!) clear the canvas.
+    canvas.width = canvas.width + 1;
+    canvas.width = canvas.width - 1;
+
+    turtleState.reset();
+}
