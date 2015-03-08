@@ -12,6 +12,9 @@
 };
 
 
+var brushColour = 'black';
+
+
 $(document).ready(function () {
 
     var resizeCanvas = function () {
@@ -26,6 +29,9 @@ $(document).ready(function () {
 
     $(window).resize(resizeCanvas);
     resizeCanvas();
+
+    var colourSelector = document.getElementById("selectColour");
+    brushColour = colourSelector.value;
 });
 
 function SendScript() {
@@ -75,7 +81,9 @@ function Draw(path) {
     ctx.lineWidth = 2;
 
     //moveTo, is where you start your drawing - the initial position of the pencil
-    //lineTo: is teh actual drawing
+    //lineTo: is the actual drawing
+    ctx.beginPath();    //Without this, when the brush colour is changed, all the draw colour will change, instead of only the new lines you are drawing
+    ExecuteChangeBrushColor();
     ctx.moveTo(((canvWidth / 2) + path[0].x), ((canvHeight / 2) - path[0].y));
 
     for (var i = 1; i < path.length; i++) {
@@ -109,4 +117,46 @@ function ClearCanvas()
     canvas.width = canvas.width - 1;
 
     turtleState.reset();
+}
+
+
+function ChangeBrushColor()
+{
+    var colourSelector = document.getElementById("selectColour");
+    var currentColour = colourSelector.value;
+
+    switch(currentColour)
+    {
+        case 'black':
+            brushColour = 'black';
+            break;
+        case 'blue':
+            brushColour = 'blue';
+            break;
+        case 'green':
+            brushColour = 'green';
+            break;
+        default:
+            brushColour = 'black';
+        }
+}
+
+function ExecuteChangeBrushColor()
+{
+    var c = document.getElementById("logoCanvas");
+    var ctx = c.getContext("2d");
+
+    switch (brushColour) {
+        case 'black':
+            ctx.strokeStyle = 'rgb(41, 36, 33)'; //you can use RGB or HEX for the colour
+            break;
+        case 'blue':
+            ctx.strokeStyle = 'rgb(0, 0, 255)';
+            break;
+        case 'green':
+            ctx.strokeStyle = 'rgb(0, 255, 0)';
+            break;
+        default:
+            ctx.strokeStyle = 'rgb(41, 36, 33)';
+    }
 }
