@@ -106,8 +106,7 @@ function SaveTurtleState(x, y, direction) {
 };
 
 
-function ClearCanvas()
-{
+function ClearCanvas() {
     var canvas = document.getElementById("logoCanvas");
     var ctx = canvas.getContext("2d");
 
@@ -120,13 +119,11 @@ function ClearCanvas()
 }
 
 
-function ChangeBrushColor()
-{
+function ChangeBrushColor() {
     var colourSelector = document.getElementById("selectColour");
     var currentColour = colourSelector.value;
 
-    switch(currentColour)
-    {
+    switch (currentColour) {
         case 'black':
             brushColour = 'black';
             break;
@@ -138,11 +135,10 @@ function ChangeBrushColor()
             break;
         default:
             brushColour = 'black';
-        }
+    }
 }
 
-function ExecuteChangeBrushColor()
-{
+function ExecuteChangeBrushColor() {
     var c = document.getElementById("logoCanvas");
     var ctx = c.getContext("2d");
 
@@ -159,60 +155,4 @@ function ExecuteChangeBrushColor()
         default:
             ctx.strokeStyle = 'rgb(41, 36, 33)';
     }
-}
-
-
-function ChangeBrushColor()
-{
-    //alert("I am an alert box!");
-
-    var colourSelector = document.getElementById("selectColour");
-    var currentColour = colourSelector.value;
-
-    var c = document.getElementById("logoCanvas");
-    var ctx = c.getContext("2d");
-  
-    switch(currentColour)
-    {
-        case 'black':
-            //alert("I am an alert box!");
-            ctx.strokeStyle = 'rgb(41, 36, 33)'; //you can use RGB or HEX for teh colour
-            break;
-        case 'blue':
-            ctx.strokeStyle= 'rgb(0, 0, 255)';
-            break;
-        case 'green':
-            ctx.strokeStyle = 'rgb(0, 255, 0)';
-            break;
-        default:
-            
-        }
-}
-
-
-function ChangeBrushColor()
-{
-    //alert("I am an alert box!");
-
-    var colourSelector = document.getElementById("selectColour");
-    var currentColour = colourSelector.value;
-
-    var c = document.getElementById("logoCanvas");
-    var ctx = c.getContext("2d");
-  
-    switch(currentColour)
-    {
-        case 'black':
-            //alert("I am an alert box!");
-            ctx.strokeStyle = 'rgb(41, 36, 33)'; //you can use RGB or HEX for teh colour
-            break;
-        case 'blue':
-            ctx.strokeStyle= 'rgb(0, 0, 255)';
-            break;
-        case 'green':
-            ctx.strokeStyle = 'rgb(0, 255, 0)';
-            break;
-        default:
-            
-        }
 }
