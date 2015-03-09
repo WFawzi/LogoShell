@@ -153,7 +153,20 @@ function ExecuteChangeBrushColor()
             break;
         case 'blue':
             ctx.strokeStyle = 'rgb(0, 0, 255)';
+            break;
+        case 'green':
+            ctx.strokeStyle = 'rgb(0, 255, 0)';
+            break;
+        default:
+            ctx.strokeStyle = 'rgb(41, 36, 33)';
+    }
+}
+
+
+function ChangeBrushColor()
+{
 =======
+>>>>>>> 4a3f764ca3c398518a1397f98773c3c35267a560
     //alert("I am an alert box!");
 
     var colourSelector = document.getElementById("selectColour");
@@ -170,17 +183,11 @@ function ExecuteChangeBrushColor()
             break;
         case 'blue':
             ctx.strokeStyle= 'rgb(0, 0, 255)';
->>>>>>> 4a3f764ca3c398518a1397f98773c3c35267a560
             break;
         case 'green':
             ctx.strokeStyle = 'rgb(0, 255, 0)';
             break;
         default:
-<<<<<<< HEAD
-            ctx.strokeStyle = 'rgb(41, 36, 33)';
-    }
-=======
             
         }
->>>>>>> 4a3f764ca3c398518a1397f98773c3c35267a560
 }
