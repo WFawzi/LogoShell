@@ -188,3 +188,31 @@ function ChangeBrushColor()
             
         }
 }
+
+
+function ChangeBrushColor()
+{
+    //alert("I am an alert box!");
+
+    var colourSelector = document.getElementById("selectColour");
+    var currentColour = colourSelector.value;
+
+    var c = document.getElementById("logoCanvas");
+    var ctx = c.getContext("2d");
+  
+    switch(currentColour)
+    {
+        case 'black':
+            //alert("I am an alert box!");
+            ctx.strokeStyle = 'rgb(41, 36, 33)'; //you can use RGB or HEX for teh colour
+            break;
+        case 'blue':
+            ctx.strokeStyle= 'rgb(0, 0, 255)';
+            break;
+        case 'green':
+            ctx.strokeStyle = 'rgb(0, 255, 0)';
+            break;
+        default:
+            
+        }
+}
