@@ -27,7 +27,8 @@ namespace WebApp
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/turtleengine").Include(
-                        "~/Scripts/TurtleEngine.js"));
+                        "~/Scripts/TurtleEngine.js",
+                        "~/Scripts/annyang.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap.css",

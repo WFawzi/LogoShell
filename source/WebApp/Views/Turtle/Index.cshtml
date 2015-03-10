@@ -52,3 +52,46 @@ $input.MoveForward(100);
 @section scripts {
         @Scripts.Render("~/bundles/turtleengine")
 }
+
+
+
+<!--NEED TO MOVE THE BELOW SCRIPT TO TurtleEngine.js-->
+<!--<script src="http://cdnjs.cloudflare.com/ajax/libs/annyang/1.0.0/annyang.min.js"></script>-->
+<script src="scripts/annyang.min.js"></script>
+<script>
+    if (annyang) {
+        var commands = {
+            'draw': function () {
+                SendScript();
+            },
+            'clear': function () {
+                ClearCanvas();
+            },
+            'brush black': function () {
+                brushColour = 'black';  //Changes the brush colour to black
+
+                //Changes the colour dropdwon to black
+                var colourSelector = document.getElementById("selectColour");
+                colourSelector.value = 'black';
+            },
+            'brush blue': function () {
+                brushColour = 'blue';
+
+                var colourSelector = document.getElementById("selectColour");
+                colourSelector.value = 'blue';
+            },
+            'brush green': function () {
+                brushColour = 'green';
+
+                var colourSelector = document.getElementById("selectColour");
+                colourSelector.value = 'green';
+            }
+        };
+
+        // Initialize annyang with our commands
+        annyang.init(commands);
+
+        // Start listening. You can call this here, or attach this call to an event, button, etc.
+        annyang.start();
+    }
+</script>

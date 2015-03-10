@@ -156,3 +156,25 @@ function ExecuteChangeBrushColor() {
             ctx.strokeStyle = 'rgb(41, 36, 33)';
     }
 }
+
+
+/*
+//Voice Recognition STARTS HERE
+//src="//cdnjs.cloudflare.com/ajax/libs/annyang/1.4.0/annyang.min.js"
+src = "//Scripts/annyang.min.js"
+if (annyang) {
+    // Let's define our first command. First the text we expect, and then the function it should call
+    var commands = {
+        'show tps report': function () {
+            alert("I am an alert box!");
+        }
+    };
+
+    // Add our commands to annyang
+    annyang.addCommands(commands);
+
+    // Start listening. You can call this here, or attach this call to an event, button, etc.
+    annyang.start();
+}
+//Voice Recognition ENDS HERE
+*/
