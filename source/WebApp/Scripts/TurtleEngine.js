@@ -33,7 +33,6 @@ $(document).ready(function () {
     var colourSelector = document.getElementById("selectColour");
     brushColour = colourSelector.value;
 
-    VoiceCommand();
 });
 
 function SendScript() {
@@ -161,7 +160,7 @@ function ExecuteChangeBrushColor() {
 
 
 
-//Bug: When the browser stops listening (when it promots to allow/ deny microphone), the colour of the whole drawing changes to the current colour of the brush
+//Bug: When the browser stops listening (when it promts to allow/ deny microphone), the colour of the whole drawing changes to the current colour of the brush
 function VoiceCommand() {
 
     $.getScript("scripts/annyang.min.js", function () {     //Why do I have to use "$.getScript("scripts/annyang.min.js", function ()" - adding "annyang.min.js" to BundleConfig.cs is not enough?
