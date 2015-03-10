@@ -32,6 +32,8 @@ $(document).ready(function () {
 
     var colourSelector = document.getElementById("selectColour");
     brushColour = colourSelector.value;
+
+    VoiceCommand();
 });
 
 function SendScript() {
@@ -158,23 +160,45 @@ function ExecuteChangeBrushColor() {
 }
 
 
-/*
-//Voice Recognition STARTS HERE
-//src="//cdnjs.cloudflare.com/ajax/libs/annyang/1.4.0/annyang.min.js"
-src = "//Scripts/annyang.min.js"
-if (annyang) {
-    // Let's define our first command. First the text we expect, and then the function it should call
-    var commands = {
-        'show tps report': function () {
-            alert("I am an alert box!");
+
+//Bug: When the browser stops listening (when it promots to allow/ deny microphone), the colour of the whole drawing changes to the current colour of the brush
+function VoiceCommand() {
+
+    $.getScript("scripts/annyang.min.js", function () {     //Why do I have to use "$.getScript("scripts/annyang.min.js", function ()" - adding "annyang.min.js" to BundleConfig.cs is not enough?
+        if (annyang) {
+            var commands = {
+                'draw': function () {
+                    SendScript();
+                },
+                'clear': function () {
+                    ClearCanvas();
+                },
+                'brush black': function () {
+                    brushColour = 'black';  //Changes the brush colour to black
+
+                    //Changes the colour dropdwon to black (just to show the user the current colour of the brush)
+                    var colourSelector = document.getElementById("selectColour");
+                    colourSelector.value = 'black';
+                },
+                'brush blue': function () {
+                    brushColour = 'blue';
+
+                    var colourSelector = document.getElementById("selectColour");
+                    colourSelector.value = 'blue';
+                },
+                'brush green': function () {
+                    brushColour = 'green';
+
+                    var colourSelector = document.getElementById("selectColour");
+                    colourSelector.value = 'green';
+                }
+            };
+
+            // Initialize annyang with our commands
+            annyang.init(commands);
+
+            // Start listening. You can call this here, or attach this call to an event, button, etc.
+            annyang.start();
         }
-    };
-
-    // Add our commands to annyang
-    annyang.addCommands(commands);
-
-    // Start listening. You can call this here, or attach this call to an event, button, etc.
-    annyang.start();
+    });
 }
-//Voice Recognition ENDS HERE
-*/
