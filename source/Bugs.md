@@ -1,0 +1,2 @@
+1) ClearCanvas(), when clear the canvas then start drawing again, it starts from the last turtle position, instead of (0,0)
+2) VoiceCommand(), when the browser stops listening (when it promts to allow/deny microphone), the colour of the whole drawing changes to the current colour of the brush
