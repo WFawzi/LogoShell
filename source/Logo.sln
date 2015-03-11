@@ -11,7 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{7BB88A48-28A4-4635-99F6-C7CFF8CBCA7E}"
 	ProjectSection(SolutionItems) = preProject
-		Bugs.md = Bugs.md
 		featureList.md = featureList.md
 	EndProjectSection
 EndProject
