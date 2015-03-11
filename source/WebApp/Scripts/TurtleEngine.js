@@ -172,12 +172,31 @@ function VoiceCommand() {
             //The reason for this behavior is unknown
 
             var addMove = function (step) {
-                var userScript = document.getElementById("codeEditor");
-                userScript.value = userScript.value + '\n$input.MoveForward(' + step + ')'
+
+                if (isNaN(step)) {              //If the user says anything but a number after "Move forward", eg: "Move forward banana"
+
+                    $.getScript("scripts/speakClient.js", function () {
+
+                        speak("Please say a number after move forward");
+                    });
+                }
+                else {
+                    var userScript = document.getElementById("codeEditor");
+                    userScript.value = userScript.value + '\n$input.MoveForward(' + step + ')'
+                }
             }
+
             var addTurn = function (angle) {
-                var userScript = document.getElementById("codeEditor");
-                userScript.value = userScript.value + '\n$input.Turn(' + angle + ')'
+                if (isNaN(angle)) {
+                    $.getScript("scripts/speakClient.js", function () {
+
+                        speak("Please say a number after turn");
+                    });
+                }
+                else {
+                    var userScript = document.getElementById("codeEditor");
+                    userScript.value = userScript.value + '\n$input.Turn(' + angle + ')'
+                }
             }
 
             var commands = {

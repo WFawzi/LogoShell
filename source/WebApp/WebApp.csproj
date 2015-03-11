@@ -212,6 +212,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\speakClient.js" />
+    <Content Include="Scripts\speakGenerator.js" />
+    <Content Include="Scripts\speakWorker.js" />
     <Content Include="Scripts\TurtleEngine.js" />
     <Content Include="Scripts\annyang.min.js" />
     <Content Include="Scripts\_references.js" />
