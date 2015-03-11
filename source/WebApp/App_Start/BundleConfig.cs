@@ -12,6 +12,7 @@ namespace WebApp
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                        "~/Scripts/bootstrap.js",
                         "~/Scripts/bootstrap.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
@@ -27,8 +28,9 @@ namespace WebApp
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/turtleengine").Include(
-                        "~/Scripts/TurtleEngine.js",
-                        "~/Scripts/annyang.min.js"));
+                        "~/Scripts/annyang.js",
+                        "~/Scripts/annyang.min.js",
+                        "~/Scripts/TurtleEngine.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap.css",
