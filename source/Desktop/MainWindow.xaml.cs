@@ -33,14 +33,17 @@ namespace Logo
         {
             InitializeComponent();
             UserScriptBox.Text =
-@"
-#You can access the cursor using $input.
-#Move the cursor forward by pixels with $input.MoveForward(pixelCount)
-#Turn the cursor by degress with $input.Turn(degrees)
+@"#You can access the cursor using $turtle.
+#Move the cursor forward by pixels with $turtle.MoveForward(pixelCount)
+#Turn the cursor by degress with $turtle.Turn(degrees)
 
-$input.MoveForward(100);
-$input.Turn(90);
-$input.MoveForward(100);
+$i = 0;
+
+while($i -lt 4) {
+  $turtle.MoveForward(100);
+  $turtle.Turn(90);
+  $i = $i + 1;
+}
 ";
         }
 

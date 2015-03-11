@@ -14,23 +14,14 @@ namespace Engine
         {
             var turtle = new Turtle(x, y, direction);
 
-            var iss = InitialSessionState.Create();             //We need to add the PowerShell dll (System.Managememt.Automation) - Project -> Manage Nuget Packages -> Search for your dll, after that, right click "InitialSessionState" and resolve
-            iss.LanguageMode = PSLanguageMode.FullLanguage;
+            script = "param([Engine.Turtle]$turtle)\n" + script;
 
-            using (var myRunSpace = RunspaceFactory.CreateRunspace(iss))
+            using (var powershell = PowerShell.Create())
             {
-                myRunSpace.Open();
-                using (var powershell = PowerShell.Create())
-                {
-                    powershell.Runspace = myRunSpace;
+                powershell.AddScript(script);
+                powershell.AddParameter("turtle", turtle);
 
-                    foreach (var line in script.Split('\n'))
-                    {
-                        powershell.AddStatement().AddScript(line, true);
-                    }
-
-                    powershell.Invoke(new[] { turtle });
-                }
+                powershell.Invoke();
             }
             return turtle;
         }
