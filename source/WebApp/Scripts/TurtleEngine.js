@@ -1,4 +1,4 @@
-﻿var turtleState = {
+var turtleState = {
     x: 0,
     y: 0,
     direction: 0,
@@ -173,11 +173,11 @@ function VoiceCommand() {
 
             var addMove = function (step) {
                 var userScript = document.getElementById("codeEditor");
-                userScript.value = userScript.value + '\n$input.MoveForward(' + step + ')'
+                userScript.value = userScript.value + '\n$turtle.MoveForward(' + step + ')'
             }
             var addTurn = function (angle) {
                 var userScript = document.getElementById("codeEditor");
-                userScript.value = userScript.value + '\n$input.Turn(' + angle + ')'
+                userScript.value = userScript.value + '\n$turtle.Turn(' + angle + ')'
             }
 
             var commands = {
