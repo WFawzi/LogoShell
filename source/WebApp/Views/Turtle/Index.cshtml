@@ -22,8 +22,8 @@
 </style>
 
 <h2>Turtle!</h2>
-<div id="voiceCommandsWrapper">
-    <input id="buttonStartVoiceCommands" type="button" class="btn btn-primary" value="Talk to me!"  onclick="VoiceCommand()"/>
+<div id="voiceCommandsWrapper"> <!--Need to modify the tool tip to look more fancy-->
+    <input id="buttonTalkToMe" type="button" class="btn btn-primary" value="Talk to me!" onclick="VoiceCommand()" data-toggle="tooltip" data-placement="right" title='Say: "Move Forward + step", "Turn + angle", "Clear script", "Draw", "Clear" and "Brush + colour"'/>
 </div>
 
 <div id="canvasWrapper">

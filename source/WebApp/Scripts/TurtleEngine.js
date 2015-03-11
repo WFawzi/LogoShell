@@ -162,9 +162,24 @@ function ExecuteChangeBrushColor() {
 
 //Bug: When the browser stops listening (when it promts to allow/ deny microphone), the colour of the whole drawing changes to the current colour of the brush
 function VoiceCommand() {
-
     $.getScript("scripts/annyang.min.js", function () {     //Why do I have to use "$.getScript("scripts/annyang.min.js", function ()" - adding "annyang.min.js" to BundleConfig.cs is not enough?
         if (annyang) {
+
+            //VIP NOTE: 
+            //If we add the addMove and addTurn functions after the commands, 
+            //the browser will not add the 'move forward *step' and the 'turn *angle' commands
+            //When debugging, you'll notice "Commands successfully loaded: 5", instaed of "Commands successfully loaded: 7"
+            //The reason for this behavior is unknown
+
+            var addMove = function (step) {
+                var userScript = document.getElementById("codeEditor");
+                userScript.value = userScript.value + '\n$input.MoveForward(' + step + ')'
+            }
+            var addTurn = function (angle) {
+                var userScript = document.getElementById("codeEditor");
+                userScript.value = userScript.value + '\n$input.Turn(' + angle + ')'
+            }
+
             var commands = {
                 'draw': function () {
                     SendScript();
@@ -190,8 +205,16 @@ function VoiceCommand() {
 
                     var colourSelector = document.getElementById("selectColour");
                     colourSelector.value = 'green';
-                }
+                },
+                'clear script': function () {
+                    var userScript = document.getElementById("codeEditor");
+                    userScript.value = '';
+                },
+                'move forward *step': addMove,
+                'turn *angle': addTurn
             };
+
+            annyang.debug();
 
             // Initialize annyang with our commands
             annyang.init(commands);
