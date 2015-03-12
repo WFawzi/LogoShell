@@ -30,6 +30,7 @@ namespace WebApp
             bundles.Add(new ScriptBundle("~/bundles/turtleengine").Include(
                         "~/Scripts/annyang.js",
                         "~/Scripts/annyang.min.js",
+                        "~/Scripts/voiceCommands.js",
                         "~/Scripts/TurtleEngine.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

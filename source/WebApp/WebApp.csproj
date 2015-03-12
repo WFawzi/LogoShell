@@ -218,6 +218,7 @@
     <Content Include="Scripts\speakWorker.js" />
     <Content Include="Scripts\TurtleEngine.js" />
     <Content Include="Scripts\annyang.min.js" />
+    <Content Include="Scripts\voiceCommands.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
