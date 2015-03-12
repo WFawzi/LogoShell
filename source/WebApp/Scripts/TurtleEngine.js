@@ -1,13 +1,13 @@
-var turtleState = {
+﻿var turtleState = {
     x: 0,
     y: 0,
     direction: 0,
     path: [],
     reset: function () {
-        path = [];
-        x = 0;
-        y = 0;
-        direction = 0;
+        this.path = [];
+        this.x = 0;
+        this.y = 0;
+        this.direction = 0;
     }
 };
 
