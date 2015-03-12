@@ -30,9 +30,7 @@ $(document).ready(function () {
     $(window).resize(resizeCanvas);
     resizeCanvas();
 
-    var colourSelector = document.getElementById("selectColour");
-    brushColour = colourSelector.value;
-
+    ChangeBrushColor();
 });
 
 function SendScript() {
@@ -84,7 +82,6 @@ function Draw(path) {
     //moveTo, is where you start your drawing - the initial position of the pencil
     //lineTo: is the actual drawing
     ctx.beginPath();    //Without this, when the brush colour is changed, all the draw colour will change, instead of only the new lines you are drawing
-    ExecuteChangeBrushColor();
     ctx.moveTo(((canvWidth / 2) + path[0].x), ((canvHeight / 2) - path[0].y));
 
     for (var i = 1; i < path.length; i++) {
@@ -117,6 +114,8 @@ function ClearCanvas() {
     canvas.width = canvas.width - 1;
 
     turtleState.reset();
+
+    ChangeBrushColor();
 }
 
 
@@ -124,28 +123,20 @@ function ChangeBrushColor() {
     var colourSelector = document.getElementById("selectColour");
     var currentColour = colourSelector.value;
 
-    switch (currentColour) {
-        case 'black':
-            brushColour = 'black';
-            break;
-        case 'blue':
-            brushColour = 'blue';
-            break;
-        case 'green':
-            brushColour = 'green';
-            break;
-        default:
-            brushColour = 'black';
-    }
+    SetBrushColor(currentColour);
 }
 
-function ExecuteChangeBrushColor() {
+
+
+function SetBrushColor(color)
+{
     var c = document.getElementById("logoCanvas");
     var ctx = c.getContext("2d");
 
-    switch (brushColour) {
+
+    switch (color) {
         case 'black':
-            ctx.strokeStyle = 'rgb(41, 36, 33)'; //you can use RGB or HEX for the colour
+            ctx.strokeStyle = 'rgb(0, 0, 0)'; //you can use RGB or HEX for the colour
             break;
         case 'blue':
             ctx.strokeStyle = 'rgb(0, 0, 255)';
