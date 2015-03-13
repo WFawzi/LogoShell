@@ -31,7 +31,8 @@ namespace WebApp
                         "~/Scripts/annyang.js",
                         "~/Scripts/annyang.min.js",
                         "~/Scripts/voiceCommands.js",
-                        "~/Scripts/TurtleEngine.js"));
+                        "~/Scripts/TurtleEngine.js",
+                        "~/Scripts/importScript.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap.css",
