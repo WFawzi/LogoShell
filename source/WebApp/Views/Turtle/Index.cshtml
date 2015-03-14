@@ -5,47 +5,55 @@
 
 
 <style>
-    #canvasWrapper,  #codeEditor{
+    #canvasWrapper, #codeEditor {
         width: 100%;
         min-width: 500px;
         max-height: 700px;
     }
+
     canvas {
-        border:1px solid #000000;
+        border: 1px solid #000000;
     }
+
     #controls {
         margin: 10px 0 10px 0;
     }
+
     #selectColour {
-        width:auto;
+        width: auto;
     }
 </style>
 
 <h2>Turtle!</h2>
-<div id="voiceCommandsWrapper"> <!--Need to modify the tool tip to look more fancy-->
-    <input id="buttonTalkToMe" type="button" class="btn btn-primary" value="Talk to me!" onclick="VoiceCommand()" data-toggle="tooltip" data-placement="right" title='Say: "Move Forward + step", "Turn + angle", "Clear script", "Draw", "Clear" and "Brush + colour"'/>
+<div id="voiceCommandsWrapper">
+    <!--Need to modify the tool tip to look more fancy-->
+    <input id="buttonTalkToMe" type="button" class="btn btn-primary" value="Talk to me!" onclick="VoiceCommand()" data-toggle="tooltip" data-placement="right" title='Say: "Move Forward + step", "Turn + angle", "Clear script", "Draw", "Clear" and "Brush + colour"' />
 </div>
 
 <div id="canvasWrapper">
     <canvas id="logoCanvas"></canvas>
 </div>
-<div id="controls" class="inline-form">
-    <input id="buttonDraw" type="button" class="btn btn-success" value="Draw!" onclick ="SendScript()"/>
-    <input id="buttonClear" type="button" class="btn btn-danger" value="Clear" onClick ="ClearCanvas()"/>
+
+<form id="controls" class="form-inline">
     <div class="form-group">
-        <select id ="selectColour" class="form-control" onchange="ChangeBrushColor()">
+        <select id="selectColour" class="form-control" onchange="ChangeBrushColor()">
             <option value="black">Black</option>
             <option value="blue">Blue</option>
             <option value="green">Green</option>
         </select>
     </div>
-    
+    <input id="buttonDraw" type="button" class="btn btn-success" value="Draw!" onclick="SendScript()" />
+    <input id="buttonClear" type="button" class="btn btn-danger" value="Clear" onclick="ClearCanvas()" />
+</form>
 
-    <input id="buttonImportScript" type="button" class="btn btn-info" value="Import Script" onClick ="ImportScript()"/>
-    
-    <input type="file" id="fileinput" />
 
-</div>
+<form class="form-inline">
+    <div class="form-group">
+        <input type="file" id="fileinput" class="btn btn-default btn-file" />
+    </div>
+    <input id="buttonImportScript" type="button" class="btn btn-info" value="Import Script" onclick="ImportScript()" />
+</form>
+
 
 <div>
     <textarea id="codeEditor" rows="20">
@@ -68,5 +76,5 @@ while($i -lt 4) {
 
 
 @section scripts {
-        @Scripts.Render("~/bundles/turtleengine")
+    @Scripts.Render("~/bundles/turtleengine")
 }

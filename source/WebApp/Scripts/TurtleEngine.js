@@ -30,7 +30,7 @@ $(document).ready(function () {
     $(window).resize(resizeCanvas);
     resizeCanvas();
 
-    ChangeBrushColor();
+    InitializeControls();
 });
 
 function SendScript() {
@@ -146,5 +146,17 @@ function SetBrushColor(color)
             break;
         default:
             ctx.strokeStyle = 'rgb(41, 36, 33)';
+    }
+}
+
+
+function InitializeControls()
+{
+    //Sets the brush color to the current selected color
+    ChangeBrushColor();
+
+    //If no file selected, disable the Import Script button
+    if (scriptFileContent === "") {
+        DisableImportScript();
     }
 }
