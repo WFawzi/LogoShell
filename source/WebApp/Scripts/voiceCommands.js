@@ -49,23 +49,16 @@ function VoiceCommand() {
                 ClearCanvas();
             },
             'brush black': function () {
-                brushColour = 'black';  //Changes the brush colour to black
-
-                //Changes the colour dropdwon to black (just to show the user the current colour of the brush)
-                var colourSelector = document.getElementById("selectColour");
-                colourSelector.value = 'black';
+                SetSelectedBrushColor('black');
+                ChangeBrushColor();
             },
             'brush blue': function () {
-                brushColour = 'blue';
-
-                var colourSelector = document.getElementById("selectColour");
-                colourSelector.value = 'blue';
+                SetSelectedBrushColor('blue');
+                ChangeBrushColor();
             },
             'brush green': function () {
-                brushColour = 'green';
-
-                var colourSelector = document.getElementById("selectColour");
-                colourSelector.value = 'green';
+                SetSelectedBrushColor('green');
+                ChangeBrushColor();
             },
             'clear script': function () {
                 var userScript = document.getElementById("codeEditor");
@@ -83,4 +76,11 @@ function VoiceCommand() {
         // Start listening. You can call this here, or attach this call to an event, button, etc.
         annyang.start();
     }
+}
+
+
+function SetSelectedBrushColor(color)
+{
+    var colourSelector = document.getElementById("selectColour");
+    colourSelector.value = color;
 }

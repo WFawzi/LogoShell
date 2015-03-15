@@ -11,10 +11,6 @@
     }
 };
 
-
-var brushColour = 'black';
-
-
 $(document).ready(function () {
 
     var resizeCanvas = function () {
