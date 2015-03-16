@@ -29,6 +29,10 @@ namespace Logo
 
         SolidColorBrush colour = Brushes.Black;
 
+        string _filename = "";
+
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -45,6 +49,8 @@ while($i -lt 4) {
   $i = $i + 1;
 }
 ";
+
+            ImportScriptButton.IsEnabled = false;
         }
 
         private void ExecuteDrawing(object sender, RoutedEventArgs e)
@@ -124,6 +130,36 @@ while($i -lt 4) {
             var comboBox = sender as ComboBox;
             comboBox.ItemsSource = data;
             comboBox.SelectedIndex = 0;
+        }
+
+
+        private void ExecuteBrowse(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Set filter for file extension and default file extension 
+            dlg.DefaultExt = ".txt";
+            dlg.Filter = "Text documents (.txt)|*.txt";
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                _filename = dlg.FileName;
+                FileNameTextBox.Text = _filename;
+
+                ImportScriptButton.IsEnabled = true;
+            } 
+        }
+
+        private void ExecuteImportScript(object sender, RoutedEventArgs e)
+        {
+            string fileContent = System.IO.File.ReadAllText(_filename);
+            UserScriptBox.Text = fileContent.ToString();
         }
     }
 }
