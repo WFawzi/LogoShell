@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{7BB88A48-28A4-4635-99F6-C7CFF8CBCA7E}"
 	ProjectSection(SolutionItems) = preProject
 		featureList.md = featureList.md
+		Fibonacci Spiral.txt = Fibonacci Spiral.txt
 	EndProjectSection
 EndProject
 Global
