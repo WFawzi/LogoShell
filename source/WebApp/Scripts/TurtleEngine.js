@@ -88,6 +88,7 @@ function Draw(path) {
         ctx.lineTo(canvasX, canvasY);
     };
 
+    ChangeBrushColor();
     ctx.stroke();
 };
 
@@ -110,8 +111,6 @@ function ClearCanvas() {
     canvas.width = canvas.width - 1;
 
     turtleState.reset();
-
-    ChangeBrushColor();
 }
 
 
