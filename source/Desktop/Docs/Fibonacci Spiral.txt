@@ -1,0 +1,16 @@
+$fibNos = 18
+$fib = (1..$fibNos);
+
+$fib[0]=1;
+$fib[1]=2;
+
+for ($i=2; $i -lt $fibNos; $i++)
+{
+	$fib[$i] = $fib[$i-1] + $fib[$i-2]
+
+	$turtle.Turn(-90);
+	$turtle.MoveForward($fib[$i-2]);
+	$turtle.Turn(-90);
+	$turtle.MoveForward($fib[$i-1]);
+	$turtle.MoveForward($fib[$i-1]);
+}
