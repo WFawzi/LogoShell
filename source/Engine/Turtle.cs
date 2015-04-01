@@ -108,6 +108,7 @@ namespace Engine
                 Turn(angleStep);
                 i++;
             }
+            MoveForward(stepLength);
         }
 
         //Functions END HERE

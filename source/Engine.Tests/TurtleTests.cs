@@ -183,6 +183,34 @@ namespace Engine.Tests
             Assert.AreEqual(turtle.Position.X, turtle.Path.ToList().Last().X, Double.Epsilon);
             Assert.AreEqual(turtle.Position.Y, turtle.Path.ToList().Last().Y, Double.Epsilon);
         }
+
+        [TestMethod]
+        public void MoveForwardArc_180Degress_SwitchesDirection()
+        {
+            //Arrange
+            Turtle turtle = new Turtle();
+
+            //Act
+            turtle.MoveForwardArc(180, 100.0);
+
+            Assert.AreEqual(turtle.Direction, 180.0, Double.Epsilon);
+        }
+
+
+
+        [TestMethod]
+        public void MoveForwardArc_180Degress_MovesRightTwiceRadius()
+        {
+            //Arrange
+            Turtle turtle = new Turtle();
+
+            //Act
+            var r = 100.0d;
+            turtle.MoveForwardArc(180, r);
+
+            Assert.AreEqual(2*r, turtle.Position.X, 0.1);
+            Assert.AreEqual(0.0d, turtle.Position.Y, 0.1);
+        }
     }
 }
 
