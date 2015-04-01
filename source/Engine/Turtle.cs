@@ -92,6 +92,23 @@ namespace Engine
                 Direction += 360d;
             }
         }
+
+        public void MoveForwardArc(double angle, double radius)
+        { 
+            double steps = 1000;
+            double angleStep = angle/steps;
+            double radiusStep = radius/steps;
+
+            double i = 0;
+
+            while(i < steps)
+            {
+                MoveForward(radiusStep);
+                Turn(angleStep);
+                i++;
+            }
+        }
+
         //Functions END HERE
     }
 }
