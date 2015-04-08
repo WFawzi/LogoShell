@@ -92,6 +92,25 @@ namespace Engine
                 Direction += 360d;
             }
         }
+
+
+        public void MoveForwardArc(double angle, double radius)
+        {
+            double angleStep = angle < 0 ? -1.0d : 1.0d;
+            double arclength = (2 * Math.PI * radius) / (360.0d / angle);
+            double stepLength = arclength / angle;
+
+            double i = 0;
+
+            while (i < Math.Abs(angle))
+            {
+                MoveForward(stepLength);
+                Turn(angleStep);
+                i++;
+            }
+            MoveForward(stepLength);
+        }
+
         //Functions END HERE
     }
 }
